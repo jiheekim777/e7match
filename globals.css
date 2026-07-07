@@ -1,0 +1,463 @@
+/* ============================================
+   E7Match 디자인 토큰 (디자인가이드 v3 기준)
+   ============================================ */
+:root {
+  /* 브랜드 */
+  --navy: #003b63;        /* Primary 딥 네이비 */
+  --navy-elev: #0e4773;   /* 네이비 위 카드 */
+  --sky: #1fa0e0;         /* Secondary 브라이트 스카이 */
+  --yellow: #ffc72e;      /* Point 선샤인 옐로우 */
+
+  /* 중립 */
+  --ink: #0e1f2c;         /* 본문 (라이트 표면) */
+  --muted: #5a6b7b;       /* 보조 (라이트 표면) */
+  --muted-on-navy: #9fb6cb; /* 보조 (다크 표면) */
+  --bg: #f4f7fa;          /* 페이지 배경 */
+  --surface: #ffffff;     /* 카드 */
+
+  /* 기능 */
+  --success: #15803d;
+  --error: #ff6f5e;
+  --error-text: #e0533f;
+
+  /* 폰트 */
+  --font-display: "Escoredream", sans-serif;
+  --font-ui: "SUIT", sans-serif;
+  --font-body: "Pretendard", sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--ink);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+h3,
+button,
+label,
+nav {
+  font-family: var(--font-ui);
+  font-weight: 600;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* ============================================
+   공통 레이아웃
+   ============================================ */
+.container {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ============================================
+   헤더
+   ============================================ */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--navy);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+
+.logo {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 22px;
+  color: #ffffff;
+  letter-spacing: 0.02em;
+}
+
+.logo .accent {
+  color: var(--yellow);
+}
+
+.header-cta {
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--ink);
+  background: var(--yellow);
+  padding: 9px 20px;
+  border-radius: 8px;
+  transition: opacity 0.15s;
+}
+
+.header-cta:hover {
+  opacity: 0.88;
+}
+
+/* ============================================
+   히어로 (다크 표면)
+   ============================================ */
+.hero {
+  background: var(--navy);
+  color: #ffffff;
+  padding: 96px 0 110px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-badge {
+  display: inline-block;
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--yellow);
+  border: 1px solid rgba(255, 199, 46, 0.45);
+  border-radius: 999px;
+  padding: 6px 16px;
+  margin-bottom: 28px;
+  letter-spacing: 0.04em;
+}
+
+.hero h1 {
+  font-size: clamp(34px, 5.4vw, 56px);
+  margin-bottom: 24px;
+}
+
+.hero h1 .yellow {
+  color: var(--yellow);
+}
+
+.hero-sub {
+  font-size: 18px;
+  color: var(--muted-on-navy);
+  max-width: 560px;
+  margin-bottom: 40px;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--ink);
+  background: var(--yellow);
+  border: none;
+  border-radius: 10px;
+  padding: 15px 32px;
+  cursor: pointer;
+  transition: transform 0.15s, opacity 0.15s;
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.btn-ghost {
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: 16px;
+  color: #ffffff;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 10px;
+  padding: 15px 32px;
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+
+.btn-ghost:hover {
+  border-color: var(--sky);
+  color: var(--sky);
+}
+
+/* 히어로 장식 라인 */
+.hero::after {
+  content: "";
+  position: absolute;
+  right: -120px;
+  top: -120px;
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(31, 160, 224, 0.25);
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  right: 40px;
+  bottom: -180px;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 199, 46, 0.18);
+}
+
+/* ============================================
+   섹션 공통
+   ============================================ */
+.section {
+  padding: 88px 0;
+}
+
+.section-light {
+  background: var(--bg);
+}
+
+.section-dark {
+  background: var(--navy);
+  color: #ffffff;
+}
+
+.section-label {
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--sky);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.section h2 {
+  font-size: clamp(24px, 3.2vw, 32px);
+  margin-bottom: 16px;
+}
+
+.section-sub {
+  color: var(--muted);
+  max-width: 620px;
+  margin-bottom: 48px;
+}
+
+.section-dark .section-sub {
+  color: var(--muted-on-navy);
+}
+
+/* ============================================
+   카드 그리드 (문제 해결 3단)
+   ============================================ */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.card {
+  background: var(--surface);
+  border-radius: 14px;
+  padding: 32px 28px;
+  box-shadow: 0 1px 3px rgba(14, 31, 44, 0.06);
+}
+
+.card-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: rgba(31, 160, 224, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  margin-bottom: 20px;
+}
+
+.card h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.card p {
+  font-size: 15px;
+  color: var(--muted);
+}
+
+/* ============================================
+   프로세스 (다크 섹션)
+   ============================================ */
+.steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  counter-reset: step;
+}
+
+.step {
+  background: var(--navy-elev);
+  border-radius: 14px;
+  padding: 28px 24px;
+}
+
+.step-num {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--yellow);
+  margin-bottom: 14px;
+  letter-spacing: 0.06em;
+}
+
+.step h3 {
+  color: #ffffff;
+  font-size: 17px;
+  margin-bottom: 8px;
+}
+
+.step p {
+  font-size: 14px;
+  color: var(--muted-on-navy);
+}
+
+/* ============================================
+   두 트랙 카드
+   ============================================ */
+.tracks {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.track {
+  background: var(--surface);
+  border-radius: 14px;
+  padding: 36px 32px;
+  border-top: 4px solid var(--sky);
+  box-shadow: 0 1px 3px rgba(14, 31, 44, 0.06);
+}
+
+.track.alt {
+  border-top-color: var(--yellow);
+}
+
+.track-tag {
+  display: inline-block;
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: 12px;
+  color: var(--ink);
+  background: rgba(31, 160, 224, 0.15);
+  border-radius: 6px;
+  padding: 4px 10px;
+  margin-bottom: 16px;
+}
+
+.track.alt .track-tag {
+  background: rgba(255, 199, 46, 0.25);
+}
+
+.track h3 {
+  font-size: 20px;
+  margin-bottom: 12px;
+}
+
+.track p {
+  font-size: 15px;
+  color: var(--muted);
+}
+
+/* ============================================
+   CTA 밴드
+   ============================================ */
+.cta-band {
+  background: var(--navy);
+  color: #ffffff;
+  text-align: center;
+  padding: 80px 0;
+}
+
+.cta-band h2 {
+  font-size: clamp(24px, 3.4vw, 34px);
+  margin-bottom: 14px;
+}
+
+.cta-band h2 .yellow {
+  color: var(--yellow);
+}
+
+.cta-band p {
+  color: var(--muted-on-navy);
+  margin-bottom: 36px;
+}
+
+/* ============================================
+   푸터
+   ============================================ */
+.footer {
+  background: var(--ink);
+  color: var(--muted-on-navy);
+  padding: 40px 0;
+  font-size: 13px;
+}
+
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.footer .logo {
+  font-size: 17px;
+}
+
+/* ============================================
+   반응형
+   ============================================ */
+@media (max-width: 860px) {
+  .cards,
+  .steps {
+    grid-template-columns: 1fr 1fr;
+  }
+  .tracks {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .hero {
+    padding: 72px 0 84px;
+  }
+  .cards,
+  .steps {
+    grid-template-columns: 1fr;
+  }
+  .section {
+    padding: 64px 0;
+  }
+}
